@@ -13,7 +13,7 @@ for j=1:m
    h1(j) = 1/(2*pi*sigma^2)*exp(-j^2/(2*sigma^2))*exp(1i*2*pi*F*j*cos(theta)); 
 end
 
-for j=1:m
+for j=1:n
    h2(j) = exp(-j^2/(2*sigma^2))*exp(1i*2*pi*F*j*sin(theta)); 
 end
 
