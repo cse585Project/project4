@@ -1,47 +1,40 @@
 I = imread('texture1.gif');
 I(I==1)=255;
+figure(1);
+imshow(I);
 sigma=8;
 theta=0.75*pi; % 135 degree
 F = 0.059;
 
-[m,n] = size(I);
+res = my_gabor(I, sigma, theta, F);
 
-h1 = zeros(m,1);
-h2 = zeros(n,1);
-
-% h1(x)
-for j=1:m
-   h1(j) = 1/(2*pi*sigma^2)*exp(-j^2/(2*sigma^2))*exp(1i*2*pi*F*j*cos(theta)); 
-end
-
-% h2(y)
-for j=1:m
-   h2(j) = exp(-j^2/(2*sigma^2))*exp(1i*2*pi*F*j*sin(theta)); 
-end
-
-res = conv2(I,h1);
-res = conv2(res,h2.');
-res = abs(res);% gabor
-res = res(1:512,1:512);
-figure();
+figure(2);
 mesh(res);
 
-sigma = 24;
+sigma2 = 24;
+smooth = my_smooth(I,sigma2,res);
 
-g1 = zeros(m,1);
-g2 = zeros(n,1);
-
-for j=1:m
-   g1(j) = 1/(2*pi*sigma^2)*exp(-j^2/(2*sigma^2));
-end
-
-for j=1:m
-   g2(j) = exp(-j^2/(2*sigma^2)); 
-end
-
-smooth = conv2(res,g1);
-smooth = conv2(smooth, g2.');
-smooth = abs(smooth);
-smooth = smooth(1:512,1:512);
-figure();
+figure(3);
 mesh(abs(smooth));
+
+%%
+I = imread('texture2.gif');
+I(I==1)=255;
+figure(1);
+imshow(I);
+sigma=24;
+theta=0*pi; % 0 degree
+F = 0.042;
+
+res = my_gabor(I, sigma, theta, F);
+
+figure(2);
+mesh(res);
+
+sigma2 = 24;
+smooth = my_smooth(I,sigma2,res);
+
+figure(3);
+mesh(abs(smooth));
+
+%%
