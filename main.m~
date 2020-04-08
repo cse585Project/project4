@@ -1,0 +1,12 @@
+% load the image and convert it from binary to 
+I = imread('texture1.gif');
+I(I==1)=255;
+
+sigma=8;
+theta=0.75*pi; % 135 degree
+F = 0.059;
+
+[m,n] = size(I);
+
+h1 = zeros(m,1);
+h2 = zeros(n,1);
