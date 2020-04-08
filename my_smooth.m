@@ -1,9 +1,9 @@
-function smooth = my_smooth(I,sigma)
+function smooth = my_smooth(res,sigma)
 %MY_SMOOTH Summary of this function goes here
 %   Detailed explanation goes here
-%   I -- input image
+%   res -- result of Gabor Filter
 %   sigma -- parameter
-[m,n] = size(I);
+[m,n] = size(res);
 g1 = zeros(m,1);
 g2 = zeros(n,1);
 for j=1:m
